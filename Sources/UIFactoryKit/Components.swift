@@ -22,5 +22,83 @@ public class ComponentsFactory {
         
     }
     
+    public static func createButton(title: String, titleColor : UIColor, bgColor: UIColor, font: UIFont,cornerRadius: CGFloat = 0,image: UIImage) -> UIButton {
+        let button = UIButton()
+        button.setTitle(title, for: .normal)
+        button.setImage(image, for: .normal)
+        button.setTitleColor(titleColor, for: .normal)
+        button.backgroundColor = bgColor
+        button.layer.cornerRadius = cornerRadius
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
+    
+    public static func createImageView(image:UIImage,bgColor: UIColor,cornerRadius: CGFloat = 0,tintColor:UIColor) ->UIImageView {
+        let view = UIImageView()
+        view.image = image
+        view.tintColor = tintColor
+        view.layer.cornerRadius = cornerRadius
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
+    
+    
+    public static func createTextField(placeholder: String, textColor: UIColor, font: UIFont, bgColor: UIColor, cornerRadius: CGFloat = 0, delegate: UITextFieldDelegate? = nil) -> UITextField {
+        let textField = UITextField()
+        textField.placeholder = placeholder
+        textField.textColor = textColor
+        textField.font = font
+        textField.backgroundColor = bgColor
+        textField.layer.cornerRadius = cornerRadius
+        textField.layer.masksToBounds = true
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.delegate = delegate
+        return textField
+    }
+    
+    public static func createSecureTextField(placeholder: String, textColor: UIColor, font: UIFont, bgColor: UIColor, cornerRadius: CGFloat = 0, delegate: UITextFieldDelegate? = nil) -> UITextField {
+           let textField = UITextField()
+           textField.placeholder = placeholder
+           textField.textColor = textColor
+           textField.font = font
+           textField.backgroundColor = bgColor
+           textField.layer.cornerRadius = cornerRadius
+           textField.layer.masksToBounds = true
+           textField.translatesAutoresizingMaskIntoConstraints = false
+           textField.isSecureTextEntry = true
+           textField.delegate = delegate
+           
+           let showHideButton = UIButton(type: .custom)
+           showHideButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+           showHideButton.tintColor = .gray
+           showHideButton.addTarget(self, action: #selector(toggleSecureEntry(_:)), for: .touchUpInside)
+           
+           textField.rightView = showHideButton
+           textField.rightViewMode = .always
+           
+           return textField
+       }
+       
+       @objc private static func toggleSecureEntry(_ sender: UIButton) {
+           guard let textField = sender.superview as? UITextField else { return }
+           textField.isSecureTextEntry.toggle()
+           
+           let eyeImageName = textField.isSecureTextEntry ? "eye.fill" : "eye.slash.fill"
+           sender.setImage(UIImage(systemName: eyeImageName), for: .normal)
+       }
+    
+    
+    public static func createSearchBar(placeholder: String, tintColor: UIColor, barStyle: UIBarStyle = .default, delegate: UISearchBarDelegate? = nil) -> UISearchBar {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = placeholder
+        searchBar.tintColor = tintColor
+        searchBar.barStyle = barStyle
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.delegate = delegate
+        return searchBar
+    }
+    
     
 }
