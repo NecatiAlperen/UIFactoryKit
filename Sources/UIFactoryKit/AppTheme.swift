@@ -8,42 +8,12 @@
 import UIKit
 
 
-public protocol AppThemeProtocol {
-    
-    var padding: AppTheme.Padding { get }
-    var fonts: AppTheme.Fonts { get }
-    var colors: AppTheme.Colors { get }
-    var cornerRadius: AppTheme.CornerRadius { get }
-}
-
-// Varsayılan implementasyonlar (opsiyonel)
-public extension AppThemeProtocol {
-    var padding: AppTheme.Padding {
-        return AppTheme.Padding(small: 8.0, medium: 16.0, large: 24.0)
-    }
-    var fonts: AppTheme.Fonts {
-        return AppTheme.Fonts(title: UIFont.systemFont(ofSize: 24, weight: .bold),
-                                body: UIFont.systemFont(ofSize: 16, weight: .regular),
-                                caption: UIFont.systemFont(ofSize: 12, weight: .light))
-    }
-    var colors: AppTheme.Colors {
-        return AppTheme.Colors(primary: UIColor.systemBlue,
-                                 secondary: UIColor.systemGray,
-                                 background: UIColor.systemBackground,
-                                 text: UIColor.label)
-    }
-    var cornerRadius: AppTheme.CornerRadius {
-        return AppTheme.CornerRadius(small: 4.0, medium: 8.0, large: 12.0)
-    }
-}
-
-
-public struct AppTheme {
-    
+public struct AppThemeTemplate {
     public struct Padding {
-        public let small: CGFloat
-        public let medium: CGFloat
-        public let large: CGFloat
+        public var small: CGFloat
+        public var medium: CGFloat
+        public var large: CGFloat
+        
         
         public init(small: CGFloat, medium: CGFloat, large: CGFloat) {
             self.small = small
@@ -51,11 +21,12 @@ public struct AppTheme {
             self.large = large
         }
     }
-    
+
     public struct Fonts {
-        public let title: UIFont
-        public let body: UIFont
-        public let caption: UIFont
+        public var title: UIFont
+        public var body: UIFont
+        public var caption: UIFont
+        
         
         public init(title: UIFont, body: UIFont, caption: UIFont) {
             self.title = title
@@ -63,12 +34,13 @@ public struct AppTheme {
             self.caption = caption
         }
     }
-    
+
     public struct Colors {
-        public let primary: UIColor
-        public let secondary: UIColor
-        public let background: UIColor
-        public let text: UIColor
+        public var primary: UIColor
+        public var secondary: UIColor
+        public var background: UIColor
+        public var text: UIColor
+        
         
         public init(primary: UIColor, secondary: UIColor, background: UIColor, text: UIColor) {
             self.primary = primary
@@ -77,17 +49,50 @@ public struct AppTheme {
             self.text = text
         }
     }
-    
+
     public struct CornerRadius {
-        public let small: CGFloat
-        public let medium: CGFloat
-        public let large: CGFloat
+        public var small: CGFloat
+        public var medium: CGFloat
+        public var large: CGFloat
+        
         
         public init(small: CGFloat, medium: CGFloat, large: CGFloat) {
             self.small = small
             self.medium = medium
             self.large = large
         }
+    }
+
+    public var padding: Padding
+    public var fonts: Fonts
+    public var colors: Colors
+    public var cornerRadius: CornerRadius
+
+    
+    public init(padding: Padding, fonts: Fonts, colors: Colors, cornerRadius: CornerRadius) {
+        self.padding = padding
+        self.fonts = fonts
+        self.colors = colors
+        self.cornerRadius = cornerRadius
+    }
+    
+    
+    public static func createAppTheme() -> AppThemeTemplate {
+        return AppThemeTemplate(
+            padding: Padding(small: 10.0, medium: 20.0, large: 30.0),
+            fonts: Fonts(
+                title: UIFont.systemFont(ofSize: 24, weight: .bold),
+                body: UIFont.systemFont(ofSize: 16, weight: .regular),
+                caption: UIFont.systemFont(ofSize: 12, weight: .light)
+            ),
+            colors: Colors(
+                primary: UIColor.systemBlue,
+                secondary: UIColor.systemGray,
+                background: UIColor.systemBackground,
+                text: UIColor.label
+            ),
+            cornerRadius: CornerRadius(small: 4.0, medium: 8.0, large: 12.0)
+        )
     }
 }
 
