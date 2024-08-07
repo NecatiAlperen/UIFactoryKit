@@ -107,7 +107,7 @@ public class ComponentsFactory {
     
     public static func createStackView(
            axis: NSLayoutConstraint.Axis,
-           arrangedSubviews: [UIView] = [],
+           arrangedSubviews: [UIView],
            spacing: CGFloat,
            alignment: UIStackView.Alignment,
            distribution: UIStackView.Distribution,
