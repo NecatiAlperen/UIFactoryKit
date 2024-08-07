@@ -105,47 +105,28 @@ public class ComponentsFactory {
     // table view
     // collection view
     
-    public static func createVerticalStackView(
-            arrangedSubviews: [UIView] = [],
-            spacing: CGFloat = 0,
-            alignment: UIStackView.Alignment = .fill,
-            distribution: UIStackView.Distribution = .fill,
-            bgColor: UIColor? = nil,
-            cornerRadius: CGFloat = 0
-        ) -> UIStackView {
-            let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
-            stackView.axis = .vertical
-            stackView.spacing = spacing
-            stackView.alignment = alignment
-            stackView.distribution = distribution
-            stackView.backgroundColor = bgColor
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            stackView.layer.cornerRadius = cornerRadius
-            stackView.layer.masksToBounds = true
-            
-            return stackView
-        }
-    
-    public static func createHorizontalStackView(
-            arrangedSubviews: [UIView] = [],
-            spacing: CGFloat = 0,
-            alignment: UIStackView.Alignment = .fill,
-            distribution: UIStackView.Distribution = .fill,
-            bgColor: UIColor? = nil,
-            cornerRadius: CGFloat = 0
-        ) -> UIStackView {
-            let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
-            stackView.axis = .horizontal
-            stackView.spacing = spacing
-            stackView.alignment = alignment
-            stackView.distribution = distribution
-            stackView.backgroundColor = bgColor
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            stackView.layer.cornerRadius = cornerRadius
-            stackView.layer.masksToBounds = true
-    
-            return stackView
-        }
+    public static func createStackView(
+           axis: NSLayoutConstraint.Axis,
+           arrangedSubviews: [UIView] = [],
+           spacing: CGFloat = 0,
+           alignment: UIStackView.Alignment = .fill,
+           distribution: UIStackView.Distribution = .fill,
+           bgColor: UIColor? = nil,
+           cornerRadius: CGFloat = 0
+       ) -> UIStackView {
+           let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
+           stackView.axis = axis
+           stackView.spacing = spacing
+           stackView.alignment = alignment
+           stackView.distribution = distribution
+           stackView.translatesAutoresizingMaskIntoConstraints = false
+           stackView.backgroundColor = bgColor
+           
+           stackView.layer.cornerRadius = cornerRadius
+           stackView.layer.masksToBounds = true
+           
+           return stackView
+       }
     
     
 }
