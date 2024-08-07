@@ -108,22 +108,21 @@ public class ComponentsFactory {
     public static func createStackView(
            axis: NSLayoutConstraint.Axis,
            arrangedSubviews: [UIView] = [],
-           spacing: CGFloat = 0,
-           alignment: UIStackView.Alignment = .fill,
-           distribution: UIStackView.Distribution = .fill,
-           bgColor: UIColor? = nil,
-           cornerRadius: CGFloat = 0
+           spacing: CGFloat,
+           alignment: UIStackView.Alignment,
+           distribution: UIStackView.Distribution,
+           bgColor: UIColor,
+           cornerRadius: CGFloat
        ) -> UIStackView {
            let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
            stackView.axis = axis
            stackView.spacing = spacing
            stackView.alignment = alignment
            stackView.distribution = distribution
-           stackView.translatesAutoresizingMaskIntoConstraints = false
            stackView.backgroundColor = bgColor
-           
            stackView.layer.cornerRadius = cornerRadius
            stackView.layer.masksToBounds = true
+           stackView.translatesAutoresizingMaskIntoConstraints = false
            
            return stackView
        }
