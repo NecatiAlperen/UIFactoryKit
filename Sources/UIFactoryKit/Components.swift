@@ -81,13 +81,13 @@ public class ComponentsFactory {
            return textField
        }
        
-       @objc private static func toggleSecureEntry(_ sender: UIButton) {
-           guard let textField = sender.superview as? UITextField else { return }
-           textField.isSecureTextEntry.toggle()
-           
-           let eyeImageName = textField.isSecureTextEntry ? "eye.fill" : "eye.slash.fill"
-           sender.setImage(UIImage(systemName: eyeImageName), for: .normal)
-       }
+    @objc private static func toggleSecureEntry(_ sender: UIButton) {
+        
+        guard let textField = sender.superview as? UITextField else { return }
+        textField.isSecureTextEntry.toggle()
+        let eyeImageName = textField.isSecureTextEntry ? "eye.slash.fill" : "eye.fill"
+        sender.setImage(UIImage(systemName: eyeImageName), for: .normal)
+    }
     
     
     public static func createSearchBar(placeholder: String, tintColor: UIColor, barStyle: UIBarStyle = .default, delegate: UISearchBarDelegate? = nil) -> UISearchBar {
@@ -100,5 +100,53 @@ public class ComponentsFactory {
         return searchBar
     }
     
+    // vertical stack view
+    // horizontal stack view
+    // table view
+    // collection view
+    
+    public static func createVerticalStackView(
+            arrangedSubviews: [UIView] = [],
+            spacing: CGFloat = 0,
+            alignment: UIStackView.Alignment = .fill,
+            distribution: UIStackView.Distribution = .fill,
+            bgColor: UIColor? = nil,
+            cornerRadius: CGFloat = 0
+        ) -> UIStackView {
+            let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
+            stackView.axis = .vertical
+            stackView.spacing = spacing
+            stackView.alignment = alignment
+            stackView.distribution = distribution
+            stackView.backgroundColor = bgColor
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.layer.cornerRadius = cornerRadius
+            stackView.layer.masksToBounds = true
+            
+            return stackView
+        }
+    
+    public static func createHorizontalStackView(
+            arrangedSubviews: [UIView] = [],
+            spacing: CGFloat = 0,
+            alignment: UIStackView.Alignment = .fill,
+            distribution: UIStackView.Distribution = .fill,
+            bgColor: UIColor? = nil,
+            cornerRadius: CGFloat = 0
+        ) -> UIStackView {
+            let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
+            stackView.axis = .horizontal
+            stackView.spacing = spacing
+            stackView.alignment = alignment
+            stackView.distribution = distribution
+            stackView.backgroundColor = bgColor
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.layer.cornerRadius = cornerRadius
+            stackView.layer.masksToBounds = true
+    
+            return stackView
+        }
+    
     
 }
+
