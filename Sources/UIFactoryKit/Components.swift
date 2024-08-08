@@ -129,17 +129,17 @@ public class ComponentsFactory {
     
     
     public static func createTableView(
-            frame: CGRect = .zero,
-            style: UITableView.Style = .plain,
+            frame: CGRect,
+            style: UITableView.Style,
             delegate: UITableViewDelegate?,
             dataSource: UITableViewDataSource?,
-            separatorStyle: UITableViewCell.SeparatorStyle = .singleLine,
-            showsVerticalScrollIndicator: Bool = false,
-            showsHorizontalScrollIndicator: Bool = false,
-            backgroundColor: UIColor = .white,
-            allowsSelection: Bool = true,
-            allowsMultipleSelection: Bool = false,
-            cornerRadius: CGFloat = 0
+            separatorStyle: UITableViewCell.SeparatorStyle,
+            showsVerticalScrollIndicator: Bool,
+            showsHorizontalScrollIndicator: Bool,
+            backgroundColor: UIColor,
+            allowsSelection: Bool,
+            allowsMultipleSelection: Bool,
+            cornerRadius: CGFloat
         ) -> UITableView {
             let tableView = UITableView(frame: frame, style: style)
             tableView.delegate = delegate
