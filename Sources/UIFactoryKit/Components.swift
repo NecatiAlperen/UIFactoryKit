@@ -100,8 +100,7 @@ public class ComponentsFactory {
         return searchBar
     }
     
-    // vertical stack view
-    // horizontal stack view
+    
     // table view
     // collection view
     
@@ -126,6 +125,36 @@ public class ComponentsFactory {
            
            return stackView
        }
+    
+    
+    
+    public static func createTableView(
+            frame: CGRect = .zero,
+            style: UITableView.Style = .plain,
+            delegate: UITableViewDelegate?,
+            dataSource: UITableViewDataSource?,
+            separatorStyle: UITableViewCell.SeparatorStyle = .singleLine,
+            showsVerticalScrollIndicator: Bool = false,
+            showsHorizontalScrollIndicator: Bool = false,
+            backgroundColor: UIColor = .white,
+            allowsSelection: Bool = true,
+            allowsMultipleSelection: Bool = false,
+            cornerRadius: CGFloat = 0
+        ) -> UITableView {
+            let tableView = UITableView(frame: frame, style: style)
+            tableView.delegate = delegate
+            tableView.dataSource = dataSource
+            tableView.separatorStyle = separatorStyle
+            tableView.showsVerticalScrollIndicator = showsVerticalScrollIndicator
+            tableView.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator
+            tableView.backgroundColor = backgroundColor
+            tableView.allowsSelection = allowsSelection
+            tableView.allowsMultipleSelection = allowsMultipleSelection
+            tableView.layer.cornerRadius = cornerRadius
+            tableView.translatesAutoresizingMaskIntoConstraints = false
+            
+            return tableView
+        }
     
     
 }
